@@ -1,41 +1,41 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <locale.h>
 
 /**
-*@brief Рассчитывает выражение a по формуле
-*@param radius - Значение радиуса шара
-*@return Рассчитаное значение a
+*@brief Р Р°СЃСЃС‡РёС‚С‹РІР°РµС‚ РІС‹СЂР°Р¶РµРЅРёРµ a РїРѕ С„РѕСЂРјСѓР»Рµ
+*@param radius - Р—РЅР°С‡РµРЅРёРµ СЂР°РґРёСѓСЃР° С€Р°СЂР°
+*@return Р Р°СЃСЃС‡РёС‚Р°РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ a
 */
 double getVolume(const double radius);
 
 /**
-*@brief Рассчитывает выражение a по формуле
-*@param radius - Значение радиуса шара
-*@return Рассчитаное значение a
+*@brief Р Р°СЃСЃС‡РёС‚С‹РІР°РµС‚ РІС‹СЂР°Р¶РµРЅРёРµ a РїРѕ С„РѕСЂРјСѓР»Рµ
+*@param radius - Р—РЅР°С‡РµРЅРёРµ СЂР°РґРёСѓСЃР° С€Р°СЂР°
+*@return Р Р°СЃСЃС‡РёС‚Р°РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ a
 */
 double getArea(const double radius);
 
 /**
-* @brief Считывает вещественное число
-* @return Вещественное число
+* @brief РЎС‡РёС‚С‹РІР°РµС‚ РІРµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ
+* @return Р’РµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ
 */
 double Input(void);
 
 /**
-* @brief Точка входа в программу =
-* @return Код ошибки
+* @brief РўРѕС‡РєР° РІС…РѕРґР° РІ РїСЂРѕРіСЂР°РјРјСѓ =
+* @return РљРѕРґ РѕС€РёР±РєРё
 */
 int main(void)
 {
 	setlocale(LC_ALL, "Russian");
-	puts("Введите радиус шара");
+	puts("Р’РІРµРґРёС‚Рµ СЂР°РґРёСѓСЃ С€Р°СЂР°");
 	double radius = Input();
 	double bVolume = getVolume(radius);
 	double bArea = getArea(radius);
-	printf_s("Объём шара %lf\n", bVolume);
-	printf_s("Площадь поверхности шара %lf", bArea);
+	printf_s("РћР±СЉС‘Рј С€Р°СЂР° %lf\n", bVolume);
+	printf_s("РџР»РѕС‰Р°РґСЊ РїРѕРІРµСЂС…РЅРѕСЃС‚Рё С€Р°СЂР° %lf", bArea);
 	return 0;
 }
 
