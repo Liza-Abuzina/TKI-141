@@ -2,6 +2,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <locale.h>
+#include <errno.h>
+#include <stdlib.h>
 
 /**
 *@brief Рассчитывает выражение a по формуле
@@ -51,7 +53,13 @@ double getArea(const double radius)
 
 double Input(void)
 {
-	double value;
-	scanf_s("%lf", &value);
+	double value = 0;
+	int result = scanf("%lf", &value);
+	if (result != 1)
+	{
+		errno = EIO;
+		perror("Не удалось считать число");
+		exit(EXIT_FAILURE);
+	}
 	return value;
 }
