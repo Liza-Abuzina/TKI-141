@@ -47,9 +47,9 @@ int main(void)
 	double inlet = Input();
 	double bVolume = getVolume(radius);
 	double bArea = getArea(radius);
-	if (inlet == 1)
+	if (inlet == v)
 		return printf_s("Объём шара % lf", bVolume);
-	else if (inlet == 2)
+	else if (inlet == a)
 		return printf_s("Площадь поверхности шара %lf", bArea);
 	else
 		return puts("Ошибка ввода");
