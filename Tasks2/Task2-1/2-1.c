@@ -25,8 +25,14 @@ double getArea(const double radius);
 */
 double Input(void);
 
+enum Choise
+{
+	Volume = 1,
+	Area = 2
+};
+
 /**
-* @brief Точка входа в программу =
+* @brief Точка входа в программу 
 * @return Код ошибки
 */
 int main(void)
@@ -34,11 +40,19 @@ int main(void)
 	setlocale(LC_ALL, "Russian");
 	puts("Введите радиус шара");
 	double radius = Input();
+	enum Choise v, a;
+	v = Volume;
+	a = Area;
+	puts("Введите 1 или 2");
+	double inlet = Input();
 	double bVolume = getVolume(radius);
 	double bArea = getArea(radius);
-	printf_s("Объём шара %lf\n", bVolume);
-	printf_s("Площадь поверхности шара %lf", bArea);
-	return 0;
+	if (inlet == 1)
+		return printf_s("Объём шара % lf", bVolume);
+	else if (inlet == 2)
+		return printf_s("Площадь поверхности шара %lf", bArea);
+	else
+		return puts("Ошибка ввода");
 }
 
 double getVolume(const double radius)
