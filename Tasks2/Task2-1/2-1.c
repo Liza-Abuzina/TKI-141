@@ -43,7 +43,7 @@ int main(void)
 	enum Choise v, a;
 	v = Volume;
 	a = Area;
-	puts("Введите 1 или 2");
+	puts("Введите 1(Объём шара) или 2(Площадь поверхности шара)");
 	double inlet = Input();
 	double bVolume = getVolume(radius);
 	double bArea = getArea(radius);
