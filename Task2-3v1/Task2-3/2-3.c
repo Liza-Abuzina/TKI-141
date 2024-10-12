@@ -1,42 +1,46 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <locale.h>
 #include <errno.h>
 #include <stdlib.h>
 
 /**
-*@brief Рассчитывает выражение a по формуле
-*@param x - Значение вводимого числа пользователем x
-*@param b - Значение вводимого числа пользователем b
-*@return Рассчитаное значение a
+*@brief Р Р°СЃСЃС‡РёС‚С‹РІР°РµС‚ РІС‹СЂР°Р¶РµРЅРёРµ a РїРѕ С„РѕСЂРјСѓР»Рµ
+*@param a - Р’РІРµРґС‘РЅРЅРѕРµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј С‡РёСЃР»Рѕ
+*@param b - Р’РІРµРґС‘РЅРЅРѕРµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј С‡РёСЃР»Рѕ
+*@param c - Р—РЅР°С‡РµРЅРёРµ СЃСѓРјРјС‹ a Рё b
+*@return Р Р°СЃСЃС‡РёС‚Р°РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ a
 */
-double getArithmetic(const double a,const double b);
+double getCheckArith(const double a, const double b, const double c);
 
 /**
-* @brief Считывает вещественное число
-* @return Вещественное число
+* @brief РЎС‡РёС‚С‹РІР°РµС‚ РІРµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ
+* @return Р’РµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ
 */
 double Input(void);
 
 /**
-* @brief Точка входа в программу =
-* @return Код ошибки
+* @brief РўРѕС‡РєР° РІС…РѕРґР° РІ РїСЂРѕРіСЂР°РјРјСѓ 
+* @return РљРѕРґ РѕС€РёР±РєРё
 */
 int main(void)
 {
 	setlocale(LC_ALL, "Russian");
-	puts("Введите первое число");
+	puts("Р’РІРµРґРёС‚Рµ РїРµСЂРІРѕРµ С‡РёСЃР»Рѕ");
 	double a = Input();
-	puts("Введите второе число");
+	puts("Р’РІРµРґРёС‚Рµ РІС‚РѕСЂРѕРµ С‡РёСЃР»Рѕ");
 	double b = Input();
-	double CheckArith = getArithmetic(a, b);
-
-	printf_s("Найденное среднее значение целое %lf", CheckArith);
+	double c = a + b;
+	double CheckArith = getCheckArith(a, b, c);
+	puts("Р›СЏ Р»СЏ %s", CheckArith);
 	return 0;
 }
 
-double getArithmetic(const double a, const double b)
+double getCheckArith(const double a, const double b, const double c)
 {
-	return (a + b) / 2;
+	if (c % 2 == 0)
+		return puts("Kzzz");
+	else
+		return puts("dtttt");
 }
 
 double Input(void)
@@ -46,7 +50,7 @@ double Input(void)
 	if (result != 1)
 	{
 		errno = EIO;
-		perror("Не удалось считать число");
+		perror("РќРµ СѓРґР°Р»РѕСЃСЊ СЃС‡РёС‚Р°С‚СЊ С‡РёСЃР»Рѕ");
 		exit(EXIT_FAILURE);
 	}
 	return value;
