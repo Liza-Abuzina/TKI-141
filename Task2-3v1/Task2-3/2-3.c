@@ -4,15 +4,6 @@
 #include <stdlib.h>
 
 /**
-*@brief Рассчитывает выражение a по формуле
-*@param a - Введённое пользователем число
-*@param b - Введённое пользователем число
-*@param c - Значение суммы a и b
-*@return Рассчитаное значение a
-*/
-double getCheckArith(const double a, const double b, const double c);
-
-/**
 * @brief Считывает вещественное число
 * @return Вещественное число
 */
@@ -25,22 +16,19 @@ double Input(void);
 int main(void)
 {
 	setlocale(LC_ALL, "Russian");
-	puts("Введите первое число");
-	double a = Input();
-	puts("Введите второе число");
-	double b = Input();
-	double c = a + b;
-	double CheckArith = getCheckArith(a, b, c);
-	puts("Ля ля %s", CheckArith);
-	return 0;
-}
-
-double getCheckArith(const double a, const double b, const double c)
-{
-	if (c % 2 == 0)
-		return puts("Kzzz");
+	int counter = 0;
+	int sum = 0;
+	while (counter < 2)
+	{
+		puts("Введите число");
+		double a = Input();
+		sum = sum + a;
+		counter = counter + 1;
+	}
+	if ((sum / 2) * 2 == sum)
+		return puts("Данное среднее арифметическое значение целое");
 	else
-		return puts("dtttt");
+		return puts("Данное среднее арифметическое значение не целое");
 }
 
 double Input(void)
