@@ -51,9 +51,7 @@ int main(void)
 double result(const double x)
 {
 	if (x == 0)
-	{
 		return 0;
-	}
 	return 3 * sin(sqrt(x)) + 0.39 * x - 3.8;
 }
 
