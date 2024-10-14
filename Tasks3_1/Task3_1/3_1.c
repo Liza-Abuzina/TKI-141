@@ -57,7 +57,7 @@ double checkstep(void)
 	if (result <= 0)
 	{
 		errno = EIO;
-		perror("Шаг не может быть отрицательным: ");
+		perror("Шаг не может быть отрицательным");
 		exit(EXIT_FAILURE);
 	}
 	return result;
