@@ -3,6 +3,7 @@
 #include <math.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <float.h>
 
 /**
 * @brief Считывает вещественное число
@@ -40,7 +41,7 @@ int main(void)
 	double step = checkstep();
 	for (double x = start; start < end + step; start += step)
 	{
-		if (x == 0)
+		if (x == DBL_EPSILON)
 			printf("%lf Неопределено\n", x);
 		else
 			printf("Результаты вычислений при x = %lf, y = %lf\n", start, 3 * sin(sqrt(start)) + 0.39 * start - 3.8);
@@ -50,10 +51,6 @@ int main(void)
 
 double result(const double x)
 {
-	if (x == 0)
-	{
-		return 0;
-	}
 	return 3 * sin(sqrt(x)) + 0.39 * x - 3.8;
 }
 
@@ -73,7 +70,7 @@ double Input(void)
 double checkstep(void)
 {
 	double result = Input();
-	if (result <= 0)
+	if (result <= DBL_EPSILON)
 	{
 		errno = EIO;
 		perror("Шаг не может быть отрицательным");
