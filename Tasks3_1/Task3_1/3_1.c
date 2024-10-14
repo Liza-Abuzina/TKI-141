@@ -41,13 +41,9 @@ int main(void)
 	for (double x = start; start < end + step; start += step)
 	{
 		if (x == 0)
-		{
 			printf("%lf Неопределено\n", x);
-		}
 		else
-		{
 			printf("Результаты вычислений при x = %lf, y = %lf\n", start, 3 * sin(sqrt(start)) + 0.39 * start - 3.8);
-		}
 	}
 	return 0;
 }
