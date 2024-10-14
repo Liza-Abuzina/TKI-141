@@ -49,7 +49,7 @@ int main(void)
 	enum Choise v, a;
 	const v = Volume;
 	const a = Area;
-	puts("Введите 1(Объём шара) или 2(Площадь поверхности шара)");
+	printf("Введите номер результата, который Вы хотите получить: объём шара %d, площадь поверхности шара %d", Volume, Area);
 	double inlet = Input();
 	double bVolume = getVolume(radius);
 	double bArea = getArea(radius);
