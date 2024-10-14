@@ -26,10 +26,9 @@ double getArea(const double radius);
 double Input(void);
 
 /**
-* @brief Перечисление данных.
-* @param Volume - объём шара
-* @param Area - Площадь поверхности шара
-* @return Значение выбранной функции
+* @brief Выбор исполняемой функции
+* @brief Объём
+* @brief Площадь поверхности
 */
 enum Choise
 {
