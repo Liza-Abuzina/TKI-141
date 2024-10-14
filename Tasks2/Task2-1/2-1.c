@@ -25,6 +25,10 @@ double getArea(const double radius);
 */
 double Input(void);
 
+/**
+* @brief Перечисление данных.
+* @return Значение выбранной функции
+*/
 enum Choise
 {
 	Volume = 1,
@@ -41,8 +45,8 @@ int main(void)
 	puts("Введите радиус шара");
 	double radius = Input();
 	enum Choise v, a;
-	v = Volume;
-	a = Area;
+	const v = Volume;
+	const a = Area;
 	puts("Введите 1(Объём шара) или 2(Площадь поверхности шара)");
 	double inlet = Input();
 	double bVolume = getVolume(radius);
