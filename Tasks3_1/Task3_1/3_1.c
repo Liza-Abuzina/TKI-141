@@ -19,11 +19,11 @@ double Input(void);
 double checkstep(void);
 
 /*
-*@brief Рассчитывает значение переменной у.
+* @brief Рассчитывает значение переменной у.
 * @param х - значение переменной х.
 * @return Значение переменной у.
 */
-double Result(const double x);
+double result(const double x);
 
 /**
 * @brief Точка входа в программу
@@ -52,7 +52,7 @@ int main(void)
 	return 0;
 }
 
-double Result(const double x)
+double result(const double x)
 {
 	if (x == 0)
 	{
