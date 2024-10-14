@@ -1,17 +1,17 @@
-#include <stdio.h>
+п»ї#include <stdio.h>
 #include <locale.h>
 #include <math.h>
 
 /**
-* @brief Точка входа в программу
-* @return 0, в случае успеха
+* @brief РўРѕС‡РєР° РІС…РѕРґР° РІ РїСЂРѕРіСЂР°РјРјСѓ
+* @return 0, РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°
 */
 int main(void)
 {
 	setlocale(LC_ALL, "Russian");
 	for (double x = 2; x < 3.1; x += 0.1)
 	{
-		printf("Результаты вычислений при x = %lf, y = %lf\n",x,3 * sin(sqrt(x)) + 0.39 * x - 3.8);
+		printf("Р РµР·СѓР»СЊС‚Р°С‚С‹ РІС‹С‡РёСЃР»РµРЅРёР№ РїСЂРё x = %lf, y = %lf\n",x,3 * sin(sqrt(x)) + 0.39 * x - 3.8);
 	}
 	return 0;
 }
