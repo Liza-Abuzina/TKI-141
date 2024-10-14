@@ -27,6 +27,8 @@ double Input(void);
 
 /**
 * @brief Перечисление данных.
+* @param Volume - объём шара
+* @param Area - Площадь поверхности шара
 * @return Значение выбранной функции
 */
 enum Choise
