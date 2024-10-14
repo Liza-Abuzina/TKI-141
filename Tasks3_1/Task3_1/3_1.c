@@ -18,6 +18,13 @@ double Input(void);
 */
 double checkstep(void);
 
+/*
+*@brief Рассчитывает значение переменной у.
+* @param х - значение переменной х.
+* @return Значение переменной у.
+*/
+double Result(const double x);
+
 /**
 * @brief Точка входа в программу
 * @return 0, в случае успеха
@@ -31,11 +38,27 @@ int main(void)
 	double end = Input();
 	puts("Введите шаг:");
 	double step = checkstep();
-	for (start; start < end + step; start += step)
+	for (double x = start; start < end + step; start += step)
 	{
-		printf("Результаты вычислений при x = %lf, y = %lf\n",start,3 * sin(sqrt(start)) + 0.39 * start - 3.8);
+		if (x == 0)
+		{
+			printf("%lf Неопределено\n", x);
+		}
+		else
+		{
+			printf("Результаты вычислений при x = %lf, y = %lf\n", start, 3 * sin(sqrt(start)) + 0.39 * start - 3.8);
+		}
 	}
 	return 0;
+}
+
+double Result(const double x)
+{
+	if (x == 0)
+	{
+		return 0;
+	}
+	return 3 * sin(sqrt(x)) + 0.39 * x - 3.8;
 }
 
 double Input(void)
