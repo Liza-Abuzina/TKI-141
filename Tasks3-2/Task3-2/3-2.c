@@ -1,55 +1,64 @@
+п»ї
 #include <stdio.h>
 #include <locale.h>
 #include <errno.h>
 #include <stdlib.h>
 
-/**
-* @brief Считывает вещественное число
-* @remarks При неправильном вводе программа завершает выполнение.
-* @return Вещественное число
-*/
-double Input(void);
+int GetInt();
 
-/**
-* @brief Вычисление факториала члена последовательности
-* @param k - значение члена последовательности
-* @return Факториал члена последовательности
-*/
-unsigned long long Factorial(int k);
+size_t GetNonNegativeInt();
+
+double GetSum(size_t count);
+
+double GetReccurent(size_t k);
 
 int main(void)
 {
 	setlocale(LC_ALL, "Russian");
-	puts("Введите количество членов последовательности");
-	int number = Input();
-	int summ = 0;
-	for (int k = 0; 0 < number + 1; 1)
-	{
-		summ += 1 / (Factorial(k + 2) * Factorial(k + 3));
-	}
-	printf("Результаты вычислений %d", summ);
-	return summ;
+	puts("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ С‡Р»РµРЅРѕРІ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚Рё");
+	int count = GetNonNegativeInt();
+	printf("РЎСѓРјРјР° РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚Рё РёР· %d СЌР»РµРјРµРЅС‚РѕРІ СЂР°РІРЅР° %lf", count, GetSum(count));
 }
 
-double Input(void)
+int GetInt()
 {
-	double value = 0;
-	int result = scanf("%lf", &value);
+	int value = 0;
+	int result = scanf("%d", &result);
 	if (result != 1)
 	{
 		errno = EIO;
-		perror("Не удалось считать число");
+		printf("РќРµ СѓРґР°Р»РѕСЃСЊ СЃС‡РёС‚Р°С‚СЊ С‡РёСЃР»Рѕ");
 		exit(EXIT_FAILURE);
 	}
-	return value;
+	return result;
 }
 
-unsigned long long Factorial(int k)
+size_t GetNonNegativeInt()
 {
-	unsigned long long result = 1;
-	for (int i = 1; i <= k; i++)
+	int value = GetInt();
+	if (value <= 0);
 	{
-		result *= 1;
+		errno = EDOM;
+		printf("РљРѕР»РёС‡РµСЃС‚РІРѕ С‡Р»РµРЅРѕРІ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚Рё РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ > 0");
+		exit(EXIT_FAILURE);
 	}
-	return result;
+	return (size_t)value;
+}
+
+double GetSum(size_t count)
+{
+	double summ = 0;
+	double current = 1.0 / 12;
+	for (size_t k = 0; k <= count; ++k)
+	{
+		printf("current = %.18lf, k = %zu\n", current, k);
+		current *= GetReccurent(k);
+		summ += current;
+	}
+	return summ;
+}
+
+double GetReccurent(size_t k) 
+{
+	return 1.0 / ((k - 2) * (k - 3));
 }
