@@ -4,6 +4,8 @@
 #include <errno.h>
 #include <stdlib.h>
 
+size_t GetNonNegative();
+
 int GetInt();
 
 double GetSum(size_t count);
@@ -14,11 +16,12 @@ int main(void)
 {
 	setlocale(LC_ALL, "Russian");
 	puts("Введите количество членов последовательности");
-	int count = GetInt();
+	int count = GetNonNegative();
 	printf("Сумма последовательности из %d элементов равна %.18lf", count, GetSum(count));
+	return EXIT_SUCCESS;
 }
 
-int GetInt()
+int GetInt(void)
 {
 	int value = 0;
 	int result = scanf("%d", &result);
@@ -28,14 +31,26 @@ int GetInt()
 		printf("Не удалось считать число");
 		exit(EXIT_FAILURE);
 	}
-	return result;
+	return value;
+}
+
+size_t GetNonNegative(void)
+{
+	int value = GetInt();
+	if (value <= 0)
+	{
+		errno = EDOM;
+		printf("Количество членов последовательности должно быть > 0");
+		exit(EXIT_FAILURE);
+	}
+	return (size_t)value;
 }
 
 double GetSum(size_t count)
 {
 	double summ = 0;
 	double current = 1.0 / 12;
-	for (size_t k = 0; k <= count - 1; ++k)
+	for (size_t k = 0; k <= count; ++k)
 	{
 		printf("current = %.18lf, k = %zu\n", current, k);
 		summ += current;
