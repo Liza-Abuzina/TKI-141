@@ -36,6 +36,8 @@ int main(void)
 	{
 		if (start <= DBL_EPSILON)
 			printf("%lf Неопределено\n", start);
+		if (start > end)
+			puts("Начало интервала не может быть больше конца");
 		else
 			printf("Результаты вычислений при x = %lf, y = %lf\n", start, 3 * sin(sqrt(start)) + 0.39 * start - 3.8);
 	}
