@@ -45,7 +45,7 @@ int main(void)
 		perror("Начало интервала не может быть больше конца");
 		exit(EXIT_FAILURE);
 	}
-	for (double x = start; start < end + step; start += step)
+	for (double x = start; x < end + step; x += step)
 	{
 		if (start <= DBL_EPSILON)
 			printf("%lf Неопределено\n", start);
