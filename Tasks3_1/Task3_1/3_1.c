@@ -39,18 +39,18 @@ int main(void)
 	double end = Input();
 	puts("Введите шаг:");
 	double step = StepInput();
-	if (start <= end)
+	if (start >= end)
 	{
 		errno = EIO;
 		perror("Начало интервала не может быть больше конца");
 		exit(EXIT_FAILURE);
 	}
-	for (start = double x; start < end + step; start += step)
+	for (double x = start; start < end + step; start += step)
 	{
 		if (start <= DBL_EPSILON)
 			printf("%lf Неопределено\n", start);
 		else
-			printf("Результаты вычислений при x = %lf, y = %lf\n", start, Result(x);
+			printf("Результаты вычислений при x = %lf, y = %lf\n", start, Result(x));
 	}
 	return 0;
 }
@@ -82,5 +82,5 @@ double StepInput(void)
 
 double Result(const double x)
 {
-	return 3 * sin(sqrt(start)) + 0.39 * start - 3.8;
+	return 3 * sin(sqrt(x)) + 0.39 * x - 3.8;
 }
