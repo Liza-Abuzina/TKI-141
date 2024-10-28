@@ -20,6 +20,13 @@ double Input(void);
 double StepInput(void);
 
 /**
+* @brief Рассчитывает значение переменной у.
+* @param х - значение переменной х.
+* @return Значение переменной у.
+*/
+double Result(const double x);
+
+/**
 * @brief Точка входа в программу
 * @return 0, в случае успеха
 */
@@ -32,14 +39,18 @@ int main(void)
 	double end = Input();
 	puts("Введите шаг:");
 	double step = StepInput();
-	for (start; start < end + step; start += step)
+	if (start <= end)
+	{
+		errno = EIO;
+		perror("Начало интервала не может быть больше конца");
+		exit(EXIT_FAILURE);
+	}
+	for (start = double x; start < end + step; start += step)
 	{
 		if (start <= DBL_EPSILON)
 			printf("%lf Неопределено\n", start);
-		if (start >= end)
-			puts("Начало интервала не может быть больше конца");
 		else
-			printf("Результаты вычислений при x = %lf, y = %lf\n", start, 3 * sin(sqrt(start)) + 0.39 * start - 3.8);
+			printf("Результаты вычислений при x = %lf, y = %lf\n", start, Result(x);
 	}
 	return 0;
 }
@@ -67,4 +78,9 @@ double StepInput(void)
 		exit(EXIT_FAILURE);
 	}
 	return result;
+}
+
+double Result(const double x)
+{
+	return 3 * sin(sqrt(start)) + 0.39 * start - 3.8;
 }
