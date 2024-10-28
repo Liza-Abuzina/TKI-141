@@ -1,12 +1,11 @@
-﻿
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <locale.h>
 #include <errno.h>
 #include <stdlib.h>
 
-size_t GetNonNegative();
+int GetInt(void);
 
-int GetInt();
+size_t GetNonNegativeInt(void);
 
 double GetSum(size_t count);
 
@@ -16,8 +15,8 @@ int main(void)
 {
 	setlocale(LC_ALL, "Russian");
 	puts("Введите количество членов последовательности");
-	int count = GetNonNegative();
-	printf("Сумма последовательности из %d элементов равна %.18lf", count, GetSum(count));
+	size_t count = GetNonNegativeInt();
+	printf("Сумма последовательности из %zu элементов равна %.18lf", count, GetSum(count));
 	return EXIT_SUCCESS;
 }
 
@@ -34,13 +33,13 @@ int GetInt(void)
 	return value;
 }
 
-size_t GetNonNegative(void)
+size_t GetNonNegativeInt(void)
 {
 	int value = GetInt();
 	if (value <= 0)
 	{
 		errno = EDOM;
-		printf("Количество членов последовательности должно быть > 0");
+		printf("Количество членов последовательности не может быть < 0");
 		exit(EXIT_FAILURE);
 	}
 	return (size_t)value;
