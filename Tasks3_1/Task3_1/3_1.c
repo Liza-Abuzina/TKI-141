@@ -47,7 +47,7 @@ int main(void)
 	}
 	for (double x = start; x < end + step; x += step)
 	{
-		if (x <= DBL_EPSILON)
+		if (x < DBL_EPSILON)
 			printf("%lf Неопределено\n", x);
 		else
 			printf("Результаты вычислений при x = %lf, y = %lf\n", x, Result(x));
