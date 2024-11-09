@@ -1,64 +1,49 @@
 ﻿#include <stdio.h>
-#include <locale.h>
-#include <errno.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <locale.h>
 
-int GetInt(void);
+double Input(void);
 
-size_t GetNonNegativeInt(void);
+double GetReccurent(double k);
 
-double GetSum(size_t count);
-
-double GetReccurent(size_t k);
+double GetSumm(double n);
 
 int main(void)
 {
 	setlocale(LC_ALL, "Russian");
 	puts("Введите количество членов последовательности");
-	size_t count = GetNonNegativeInt();
-	printf("Сумма последовательности из %zu элементов равна %.18lf", count, GetSum(count));
-	return EXIT_SUCCESS;
+	double n = Input();
+	printf("Сумма при n = %lf равна %.18lf", n, GetSumm(n));
 }
 
-int GetInt(void)
+double Input(void)
 {
-	int value = 0;
-	int result = scanf("%d", &result);
+	double value;
+	int result = scanf("%lf", &value);
 	if (result != 1)
 	{
 		errno = EIO;
-		printf("Не удалось считать число");
+		perror("Не удалось считать число");
 		exit(EXIT_FAILURE);
 	}
 	return value;
 }
 
-size_t GetNonNegativeInt(void)
+double GetSumm(double n)
 {
-	int value = GetInt();
-	if (value <= 0)
+	double g = 0.666666666666666667;
+	double summ = 0.666666666666666667;
+	for (double k = 1; k <= n; k++)
 	{
-		errno = EDOM;
-		printf("Количество членов последовательности не может быть < 0");
-		exit(EXIT_FAILURE);
-	}
-	return (size_t)value;
-}
-
-double GetSum(size_t count)
-{
-	double summ = 0;
-	double current = 1.0 / 12;
-	for (size_t k = 0; k <= count; ++k)
-	{
-		printf("current = %.18lf, k = %zu\n", current, k);
-		summ += current;
-		current *= GetReccurent(k);
+		printf("g = %.18lf, k = %lf\n", g, k);
+		g *= GetReccurent(k);
+		summ += g;
 	}
 	return summ;
 }
 
-double GetReccurent(size_t k) 
+double GetReccurent(double k)
 {
-	return 1.0 / ((k + 2) * (k + 3));
+	return 1/((k + 2) * (k + 3));
 }
