@@ -32,8 +32,8 @@ double Input(void)
 
 double GetSumm(double n)
 {
-	double g = 0.666666666666666667;
-	double summ = 0.666666666666666667;
+	double g = 0.166666666666666666;
+	double summ = 0.166666666666666666;
 	for (double k = 1; k <= n; k++)
 	{
 		printf("g = %.18lf, k = %lf\n", g, k);
