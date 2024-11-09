@@ -71,7 +71,6 @@ double GetSumm(double n)
 	double summ = 1.0 / 12;
 	for (double k = 1; k < n; k++)
 	{
-		printf("current = %.18lf, k = %lf\n", current, k);
 		current *= GetReccurent(k);
 		summ += current;
 	}
