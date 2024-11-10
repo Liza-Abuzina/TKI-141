@@ -3,32 +3,40 @@
 #include <errno.h>
 #include <locale.h>
 #include <float.h>
+#include <math.h>
 
 /**
-* @brief Считывает вещественное число n
+* @brief Считывает вещественное число 
 * @remarks При неправильном вводе программа завершает выполнение.
 * @return Вещественное число
 */
 double Input(void);
 
 /**
+* @brief Считывает вещественное число 
+* @remarks При отрицательном значении ввода программа завершает выполнение
+* @return Вещественное число
+*/
+double CheckInput(void);
+
+/**
 * @brief Получает на вход число k
 * @return Рекурентное число с заданным k
 */
-double GetReccurent(double k);
+double GetReccurent(const double k);
 
 /**
 * @brief Считывает номер последнего члена последовательности
 * @return Сумма рекурентных чисел
 */
-double GetSumm(double n);
+double GetSumm(const double n);
 
 /**
 * @brief Вычисляет сумму членов последовательности, не меньших e
 * @param e Пороговое значение
 * @return Сумма членов последовательности, не меньших e
 */
-double GetSummGreaterThanE(double e);
+double GetSummGreaterThanE(const double e);
 
 /**
 * @brief Точка входа в программу 
@@ -38,10 +46,10 @@ int main(void)
 {
 	setlocale(LC_ALL, "Russian");
 	puts("Введите номер последнего члена последовательности");
-	double n = Input();
+	double n = CheckInput();
 	printf("Сумма при n = %lf равна %.18lf\n", n, GetSumm(n));
 	puts("Введите пороговое число");
-	double e = Input();
+	double e = CheckInput();
 	printf("Сумма членов последовательности, не меньших e = %lf равна %.18lf", e, GetSummGreaterThanE(e));
 }
 
@@ -55,21 +63,26 @@ double Input(void)
 		perror("Не удалось считать число");
 		exit(EXIT_FAILURE);
 	}
-	if (result <= DBL_EPSILON)
+	return value;
+}
+
+double CheckInput(void)
+{
+	double value = Input();
+	if (value <= DBL_EPSILON)
 	{
 		errno = EDOM;
-		printf("Количество членов последовательности не может быть < 0");
+		printf("Ошибка ввода числового значения");
 		exit(EXIT_FAILURE);
 	}
 	return value;
 }
 
-
 double GetSumm(double n)
 {
 	double current = 1.0 / 12;
-	double summ = 1.0 / 12;
-	for (double k = 1; k < n; k++)
+	double summ = current;
+	for (int k = 1; k < n; k++)
 	{
 		current *= GetReccurent(k);
 		summ += current;
@@ -86,12 +99,12 @@ double GetSummGreaterThanE(double e)
 {
 	double current = 1.0 / 12;
 	double summ = 0.0;
-	double k = 0;
-	while (current >= e)
+	double k = 1.0;
+	while (fabs(current) >= e)
 	{
 		summ += current;
-		k++;
 		current *= GetReccurent(k);
+		k++;
 	}
 	return summ;
 }
