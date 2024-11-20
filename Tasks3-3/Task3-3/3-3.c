@@ -6,7 +6,7 @@
 #include <float.h>
 
 /*
-*@brief Считывает вещественное число.
+* @brief Считывает вещественное число.
 * @remarks При неправильном вводе программа завершает выполнение.
 * @return Вещественное число.
 */
@@ -20,7 +20,7 @@ double input(void);
 double checkinputstart(void);
 
 /**
-*@brief Проверка интервала.
+* @brief Проверка интервала.
 * @param start - начальное значение интервала.
 * @param end - конечное значение интервала.
 * @return Значение "true" в случае выполнения условия.
@@ -28,14 +28,14 @@ double checkinputstart(void);
 double checkinterval(const double start, const double end);
 
 /**
-*@brief Проверка шага.
+* @brief Проверка шага.
 * @param При неправильном вводе программа завершает выполнение.
 * @return Значение шага в случае выполнения условия.
 */
 double checkstep(void);
 
 /**
-*@brief Вычисление значения функции.
+* @brief Вычисление значения функции.
 * @param x - значение аргумента функции.
 * @return Значение функции при значении аргумента x.
 */
@@ -50,7 +50,7 @@ double getfunctionx(const double x);
 double getrecurrfunctionx(const double x, const int n);
 
 /**
-*@brief Вычисление суммы функционального ряда с 1 по n - ный элемент.
+* @brief Вычисление суммы функционального ряда с 1 по n - ный элемент.
 * @param start - начальное значение интервала.
 * @param end - конечное значение интервала.
 * @param eps - заданная точность вычисления.
