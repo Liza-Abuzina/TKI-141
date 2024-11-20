@@ -13,6 +13,13 @@
 double input(void);
 
 /**
+* @brief Считывает вещественное число
+* @remarks При отрицательном значении ввода программа завершает выполнение
+* @return Вещественное число
+*/
+double checkinputstart(void);
+
+/**
 *@brief Проверка интервала.
 * @param start - начальное значение интервала.
 * @param end - конечное значение интервала.
@@ -60,7 +67,7 @@ int main(void)
     setlocale(LC_ALL, "Russian");
     const double eps = pow(10, -4);
     printf("Введите начало интервала: ");
-    double start = input();
+    double start = checkinputstart();
     printf("Введите конец интервала: ");
     double end = input();
     checkinterval(start, end);
@@ -78,11 +85,24 @@ int main(void)
 
 double input(void)
 {
-    double value = 0.0;
-    if (scanf_s("%lf", &value) != 1)
+    double value;
+    int result = scanf("%lf", &value);
+    if (result != 1)
     {
         errno = EIO;
-        perror("Ошибка ввода числового значения: ");
+        perror("Не удалось считать число");
+        exit(EXIT_FAILURE);
+    }
+    return value;
+}
+
+double checkinputstart(void)
+{
+    double value = input();
+    if (value <= DBL_EPSILON)
+    {
+        errno = EDOM;
+        printf("Сумма не существует на заданном начале интервала");
         exit(EXIT_FAILURE);
     }
     return value;
