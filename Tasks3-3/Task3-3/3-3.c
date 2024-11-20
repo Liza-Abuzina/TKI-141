@@ -102,7 +102,7 @@ double checkinputstart(void)
     if (value <= DBL_EPSILON)
     {
         errno = EDOM;
-        printf("Сумма не существует на заданном начале интервала");
+        printf("Значение функционального ряда не существует на заданном начале интервала");
         exit(EXIT_FAILURE);
     }
     return value;
