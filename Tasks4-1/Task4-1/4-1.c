@@ -126,9 +126,9 @@ int main(void)
     int* array = getnewarray(n);
     switch ((enum Choise)choice)
     {
-    case Fillrandomly: fill_array_randomly(array, n);
+    case Fillrandomly: fillarrayrandomly(array, n);
         break;
-    case Fillmanually: fill_array_manually(array, n);
+    case Fillmanually: fillarraymanually(array, n);
         break;
     default: puts("Ошибка ввода номера операции.");
         return 1;
@@ -150,10 +150,10 @@ int main(void)
     }
     int* copyarray = getcopyarray(array, n);
     printf("Введите количество последних элементов массива, которые нужно заменить на значения с противоположным знаком: \n");
-    size_t k = (size_t)above_zero();
+    size_t k = (size_t)abovezero();
     replacelastk(copyarray, n, k);
     printf("Изменённый массив: \n");
-    print_array(copyarray, n);
+    printarray(copyarray, n);
     free(array);
     free(copyarray);
     return 0;
