@@ -7,24 +7,32 @@
 #include <stdbool.h>
 
 /**
-*@brief Нахождение соседних элементов с указанной суммой.
-* @param array - массив
-* @param k - размер массива
-* @param summ - сумма элементов
-* @return Число "1", если найдены соседние элементы с указанной суммой, иначе "0".
-*/
-int haspairwithsum(const int* array, const size_t n, const int summ);
-
-/**
-*@brief Массив
-* @param array - массив
+* @brief Вычисляет сумму нечетных элементов массива
+* @param array - указатель на массив целых чисел
 * @param n - размер массива
-* @return Выводит индексы элементов массива, которые кратны 3.
+* @return Сумма нечетных элементов массива
 */
-void printindicesdivisibleby3(const int* array, const size_t n);
+int sumofoddelements(int* array, const size_t n);
 
 /**
-*@brief Массив
+* @brief Печатает индексы элементов массива, которые больше заданного значения A
+* @param array - указатель на массив целых чисел
+* @param n - размер массива
+* @param A - значение, по которому производится сравнение
+* @return индексы, значение которых больше A
+*/
+void printindicesgreaterthana(int* array, const size_t n, int A);
+
+/**
+* @brief Заменяет второй элемент массива максимальным отрицательным элементом
+* @param array - указатель на массив целых чисел
+* @param n - размер массива
+* @return массив с замененным вторым элементом
+*/
+void replacesecondelementwithmaxnegative(int* array, const size_t n);
+
+/**
+* @brief Массив
 * @param array - массив
 * @param n - размер массива
 * @return Выводит пользователю массив
@@ -32,16 +40,7 @@ void printindicesdivisibleby3(const int* array, const size_t n);
 void printarray(const int* array, const size_t n);
 
 /**
-*@brief Замена k элементов массива на значения с противоположным знаком.
-* @param copy_array - копия массива.
-* @param k - размер массива.
-* @param n - размер массива.
-* @return Изменённый массив.
-*/
-void replacelastk(int* copy_array, const size_t n, const size_t k);
-
-/**
-*@brief Заполнение массива n - количеством рандомных элементов в интервале.
+* @brief Заполнение массива n - количеством рандомных элементов в интервале.
 * @param array - массив.
 * @param n - размер массива.
 * @param start - начало интервала.
@@ -51,7 +50,7 @@ void replacelastk(int* copy_array, const size_t n, const size_t k);
 void fillarrayrandomly(int* array, const size_t n);
 
 /**
-*@brief Заполнение массива n - количеством элементов полученных от пользователя.
+* @brief Заполнение массива n - количеством элементов полученных от пользователя.
 * @param array - массив
 * @param n - размер массива
 * @return Заполненый массив
@@ -59,7 +58,7 @@ void fillarrayrandomly(int* array, const size_t n);
 void fillarraymanually(int* array, const size_t n);
 
 /**
-*@brief Проверка корректности ввода интервала.
+* @brief Проверка корректности ввода интервала.
 * @param start - начало интервала.
 * @param end - конец интервала.
 * @return Значение "true" в случае усепшной проверки.
@@ -67,42 +66,34 @@ void fillarraymanually(int* array, const size_t n);
 void checkinterval(int const start, int const end);
 
 /**
-*@brief Массив
-* @param array - исходный массив
-* @param n - размер массива
-* @return Создание копии массива
-*/
-int* getcopyarray(const int* array, const int n);
-
-/**
-*@brief Проверка иницилизации массива.
+* @brief Проверка иницилизации массива.
 * @param array - массив
 * @return Значение "true" в случае усепшной проверки.
 */
 void checkarray(const int* array);
 
 /**
-*@brief Массив
+* @brief Массив
 * @param n - размер массива
 * @return Создание нового массива
 */
 int* getnewarray(const int n);
 /**
-*@brief Считывает целочисленное значение.
+* @brief Считывает целочисленное значение.
 * @remarks При неправильном вводе программа завершает выполнение.
 * @return Целочисленное значение.
 */
 int inputvalue(void);
 
 /**
-*@brief Считывает целочисленное значение.
+* @brief Считывает целочисленное значение.
 * @remarks Проверяет полученное значение на ноль, при соответствии программа завершает выполнение.
 * @return Целочисленное значение.
 */
 int abovezero(void);
 
 /**
-*@brief Выбор исполняемой функции
+* @brief Выбор исполняемой функции
 * @brief Заполнить массив рандомными числами
 * @brief Заполнить массив самостоятельно
 */
@@ -113,7 +104,7 @@ enum Choise
 };
 
 /**
-*@brief Точка входа в программу.
+* @brief Точка входа в программу.
 * @return 0, в случае успеха.
 */
 int main(void)
@@ -121,42 +112,84 @@ int main(void)
     setlocale(LC_ALL, "Russian");
     printf("Введите размер массива: \n");
     size_t n = (size_t)abovezero();
-    printf("Если вы хотите запонить массив рандомными числами, то нажмите (%d), иначе нажмите (%d): \n", Fillrandomly, Fillmanually);
+    printf("Если вы хотите заполнить массив рандомными числами, то введите (%d), иначе (%d): \n", Fillrandomly, Fillmanually);
     int choice = inputvalue();
     int* array = getnewarray(n);
     switch ((enum Choise)choice)
     {
-    case Fillrandomly: fillarrayrandomly(array, n);
+    case Fillrandomly:
+        fillarrayrandomly(array, n);
         break;
-    case Fillmanually: fillarraymanually(array, n);
+    case Fillmanually:
+        fillarraymanually(array, n);
         break;
-    default: puts("Ошибка ввода номера операции.");
+    default:
+        puts("Ошибка ввода номера операции.");
+        free(array); // Освобождаем память перед выходом
         return 1;
-        break;
     }
     printf("Исходный массив: \n");
     printarray(array, n);
-    printf("Индексы элементов, кратных 3: ");
-    printindicesdivisibleby3(array, n);
-    printf("Введите значение суммы элементов массива: \n");
-    int summ = inputvalue();
-    if (haspairwithsum(array, n, summ))
+    int sumodd = sumofoddelements(array, n);
+    printf("Сумма нечетных элементов: %d\n", sumodd);
+    printf("Введите число A: ");
+    int A = inputvalue();
+    printindicesgreaterthana(array, n, A);
+    replacesecondelementwithmaxnegative(array, n);
+    printf("Массив после замены второго элемента:\n");
+    for (size_t i = 0; i < n; i++)
     {
-        printf("Существуют соседние элементы с указанной суммой.\n");
+        printf("%d ", array[i]);
     }
-    else
-    {
-        printf("Соседние элементы с указанной суммой отсутствуют.\n");
-    }
-    int* copyarray = getcopyarray(array, n);
-    printf("Введите количество последних элементов массива, которые нужно заменить на значения с противоположным знаком: \n");
-    size_t k = (size_t)abovezero();
-    replacelastk(copyarray, n, k);
-    printf("Изменённый массив: \n");
-    printarray(copyarray, n);
+    printf("\n");
     free(array);
-    free(copyarray);
     return 0;
+}
+
+int sumofoddelements(int* array, const size_t n)
+{
+    int sum = 0;
+    for (size_t i = 0; i < n; i++)
+    {
+        if (array[i] % 2 != 0)
+        {
+            sum += array[i];
+        }
+    }
+    return sum;
+}
+
+void printindicesgreaterthana(int* array, const size_t n, int A)
+{
+    printf("Индексы элементов больше %d:\n", A);
+    int found = 0;
+    for (size_t i = 0; i < n; i++) 
+    {
+        if (array[i] > A) 
+        {
+            printf("Индекс элемента, большего чем %d: %zu\n", A, i);
+            found = 1; 
+        }
+    }
+    if (!found) 
+    {
+        printf("Нет элементов, больших чем %d.\n", A);
+    }
+}
+void replacesecondelementwithmaxnegative(int* array, const size_t n)
+{
+    int maxnegative = -1;
+    for (size_t i = 0; i < n; i++)
+    {
+        if (array[i] < 0 && (maxnegative == -1 || array[i] > maxnegative))
+        {
+            maxnegative = array[i];
+        }
+    }
+    if (maxnegative != 0 && n > 1)
+    {
+        array[1] = maxnegative;
+    }
 }
 
 void printarray(const int* array, const size_t n)
@@ -169,41 +202,6 @@ void printarray(const int* array, const size_t n)
     printf("\n");
 }
 
-int haspairwithsum(const int* array, const size_t n, const int summ)
-{
-    checkarray(array);
-    for (size_t i = 0; i < n - 1; i++)
-    {
-        if (array[i] + array[i + 1] == summ)
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-void printindicesdivisibleby3(const int* array, const size_t n)
-{
-    checkarray(array);
-    for (size_t i = 0; i < n; i++)
-    {
-        if (array[i] % 3 == 0 && array[i] != 0)
-        {
-            printf("%d ", i);
-        }
-    }
-    printf("\n");
-}
-
-void replacelastk(int* copy_array, const size_t n, const size_t k)
-{
-    checkarray(copy_array);
-    for (size_t i = n - k; i < n; i++)
-    {
-        copy_array[i] = -copy_array[i];
-    }
-}
-
 void fillarrayrandomly(int* array, const size_t n)
 {
     checkarray(array);
@@ -213,7 +211,6 @@ void fillarrayrandomly(int* array, const size_t n)
     printf("Введите конец интервала: \n");
     int end = inputvalue();
     checkinterval(start, end);
-
     for (size_t i = 0; i < n; i++)
     {
         array[i] = rand() % (end - start + 1) + start;
@@ -226,7 +223,7 @@ void fillarraymanually(int* array, const size_t n)
     for (size_t i = 0; i < n; i++)
     {
         printf("Введите элемент %zu: ", i + 1);
-        scanf_s("%d", &array[i]);
+        scanf_s("%d", &array[i]); 
     }
 }
 
@@ -250,30 +247,17 @@ void checkarray(const int* array)
     }
 }
 
-int* getcopyarray(const int* array, const int n)
-{
-    checkarray(array);
-    int* copyarray = (int*)malloc(n * sizeof(int));
-    checkarray(copyarray);
-
-    for (size_t i = 0; i < n; i++)
-    {
-        copyarray[i] = array[i];
-    }
-    return copyarray;
-}
-
 int* getnewarray(const int n)
 {
     int* array = (int*)malloc(n * sizeof(int));
-    checkarray(array);
+    checkarray(array); 
     return array;
 }
 
 int inputvalue(void)
 {
     int value = 0;
-    if (scanf_s("%d", &value) != 1)
+    if (scanf_s("%d", &value) != 1) 
     {
         errno = EIO;
         perror("Ошибка ввода числового значения: ");
@@ -288,7 +272,7 @@ int abovezero(void)
     if (value <= 0)
     {
         errno = EIO;
-        perror("Ошибка ввода числового значения (оно не может быть меньше или равный нулю): ");
+        perror("Ошибка ввода числового значения (оно не может быть меньше или равным нулю): ");
         exit(EXIT_FAILURE);
     }
     return value;
