@@ -125,7 +125,7 @@ int main(void)
         break;
     default:
         puts("Ошибка ввода номера операции.");
-        free(array); // Освобождаем память перед выходом
+        free(array); 
         return 1;
     }
     printf("Исходный массив: \n");
