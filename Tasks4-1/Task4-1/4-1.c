@@ -127,8 +127,8 @@ int main(void)
     printf("Исходный массив: \n");
     printarray(array, n);
     int sumodd = sumofoddelements(array, n);
-    printf("Сумма нечетных элементов: %d ", sumodd);
-    printf("Введите число A: ");
+    printf("Сумма нечетных элементов: %d\n", sumodd);
+    printf("Введите число A: \n");
     int A = inputvalue();
     printindicesgreaterthana(array, n, A);
     replacesecondelementwithmaxnegative(array, n);
@@ -157,19 +157,19 @@ int sumofoddelements(int* array, const size_t n)
 
 void printindicesgreaterthana(int* array, const size_t n, int A)
 {
-    printf("Индексы элементов больше %d: ", A);
+    printf("Индексы элементов больше %d: \n", A);
     int found = 0;
     for (size_t i = 0; i < n; i++) 
     {
         if (array[i] > A) 
         {
-            printf("Индекс элемента, большего чем %d: %zu", A, i);
+            printf("Индекс элемента, большего чем %d: %zu\n", A, i);
             found = 1; 
         }
     }
     if (!found) 
     {
-        printf("Нет элементов, больших чем %d.", A);
+        printf("Нет элементов, больших чем %d.\n", A);
     }
 }
 void replacesecondelementwithmaxnegative(int* array, const size_t n)
