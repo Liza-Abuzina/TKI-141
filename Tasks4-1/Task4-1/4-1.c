@@ -19,7 +19,6 @@ int sumofoddelements(int* array, const size_t n);
 * @param array - указатель на массив целых чисел
 * @param n - размер массива
 * @param A - значение, по которому производится сравнение
-* @return индексы, значение которых больше A
 */
 void printindicesgreaterthana(int* array, const size_t n, int A);
 
@@ -27,7 +26,6 @@ void printindicesgreaterthana(int* array, const size_t n, int A);
 * @brief Заменяет второй элемент массива максимальным отрицательным элементом
 * @param array - указатель на массив целых чисел
 * @param n - размер массива
-* @return массив с замененным вторым элементом
 */
 void replacesecondelementwithmaxnegative(int* array, const size_t n);
 
@@ -43,8 +41,6 @@ void printarray(const int* array, const size_t n);
 * @brief Заполнение массива n - количеством рандомных элементов в интервале.
 * @param array - массив.
 * @param n - размер массива.
-* @param start - начало интервала.
-* @param end - конец интервала.
 * @return Заполненый массив.
 */
 void fillarrayrandomly(int* array, const size_t n);
@@ -178,15 +174,15 @@ void printindicesgreaterthana(int* array, const size_t n, int A)
 }
 void replacesecondelementwithmaxnegative(int* array, const size_t n)
 {
-    int maxnegative = -1;
+    int maxnegative = -1000;
     for (size_t i = 0; i < n; i++)
     {
-        if (array[i] < 0 && (maxnegative == -1 || array[i] > maxnegative))
+        if (array[i] < 0 && array[i] > maxnegative)
         {
             maxnegative = array[i];
         }
     }
-    if (maxnegative != 0 && n > 1)
+    if (maxnegative < 0 && n > 1)
     {
         array[1] = maxnegative;
     }
