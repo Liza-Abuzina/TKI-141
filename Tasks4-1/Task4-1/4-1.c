@@ -110,9 +110,9 @@ enum Choise
 int main(void)
 {
     setlocale(LC_ALL, "Russian");
-    printf("Введите размер массива: \n");
+    printf("Введите размер массива: ");
     size_t n = (size_t)abovezero();
-    printf("Если вы хотите заполнить массив рандомными числами, то введите (%d), иначе (%d): \n", Fillrandomly, Fillmanually);
+    printf("Если вы хотите заполнить массив рандомными числами, то введите (%d), иначе (%d): ", Fillrandomly, Fillmanually);
     int choice = inputvalue();
     int* array = getnewarray(n);
     switch ((enum Choise)choice)
@@ -131,7 +131,7 @@ int main(void)
     printf("Исходный массив: \n");
     printarray(array, n);
     int sumodd = sumofoddelements(array, n);
-    printf("Сумма нечетных элементов: %d\n", sumodd);
+    printf("Сумма нечетных элементов: %d ", sumodd);
     printf("Введите число A: ");
     int A = inputvalue();
     printindicesgreaterthana(array, n, A);
@@ -161,19 +161,19 @@ int sumofoddelements(int* array, const size_t n)
 
 void printindicesgreaterthana(int* array, const size_t n, int A)
 {
-    printf("Индексы элементов больше %d:\n", A);
+    printf("Индексы элементов больше %d: ", A);
     int found = 0;
     for (size_t i = 0; i < n; i++) 
     {
         if (array[i] > A) 
         {
-            printf("Индекс элемента, большего чем %d: %zu\n", A, i);
+            printf("Индекс элемента, большего чем %d: %zu", A, i);
             found = 1; 
         }
     }
     if (!found) 
     {
-        printf("Нет элементов, больших чем %d.\n", A);
+        printf("Нет элементов, больших чем %d.", A);
     }
 }
 void replacesecondelementwithmaxnegative(int* array, const size_t n)
@@ -206,9 +206,9 @@ void fillarrayrandomly(int* array, const size_t n)
 {
     checkarray(array);
     srand(time(NULL));
-    printf("Введите начало интервала: \n");
+    printf("Введите начало интервала: ");
     int start = inputvalue();
-    printf("Введите конец интервала: \n");
+    printf("Введите конец интервала: ");
     int end = inputvalue();
     checkinterval(start, end);
     for (size_t i = 0; i < n; i++)
