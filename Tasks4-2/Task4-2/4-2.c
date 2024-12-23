@@ -47,7 +47,7 @@ void checkinterval(int const start, int const end);
 /**
 * @brief Проверка иницилизации массива.
 * @param array - массив
-* @return Значение "true" в случае усепшной проверки.
+* @return Значение "true" в случае успешной проверки.
 */
 void checkarray(const int* array);
 
@@ -70,6 +70,30 @@ int inputvalue(void);
 * @return Целочисленное значение.
 */
 int abovezero(void);
+
+/**
+* @brief Проверяет, содержит ли переданное целое число хотя бы одну цифру 1
+* @param num - Целое число, которое будет проверяться
+* @return 1, если число содержит цифру "1", и 0 в противном случае
+*/
+int containsDigitOne(int num);
+
+/**
+* @brief Вставляет значение K перед каждым элементом массива, который содержит цифру 1. При этом размер массива увеличивается
+* @param array - Указатель на массив целых чисел
+* @param n - Указатель на переменную, хранящую текущий размер массива
+* @param K - Значение, которое будет вставлено перед элементами, содержащими цифру 1
+* @return Указатель на новый массив с вставленными значениями
+*/
+int* insertBeforeDigitOne(int* array, size_t* n, int K);
+
+/**
+* @brief Заполняет массив A значениями, основанными на значениях из массива D
+* @param D - Указатель на массив целых чисел
+* @param A - Указатель на массив целых чисел, который будет заполнен новыми значениями
+* @param n - Размер массива D
+*/
+void createArrayA(const int* D, int* A, size_t n);
 
 /**
 * @brief Выбор исполняемой функции
@@ -111,12 +135,18 @@ int main(void)
     printarray(array, n);
     replacesecondelementwithmaxnegative(array, n);
     printf("Массив после замены второго элемента:\n");
-    for (size_t i = 0; i < n; i++)
-    {
-        printf("%d ", array[i]);
-    }
-    printf("\n");
+    printarray(array, n);
+    printf("Введите число K: ");
+    int K = inputvalue();
+    array = insertBeforeDigitOne(array, &n, K);
+    printf("Массив после вставки K перед элементами, содержащими цифру 1:\n");
+    printarray(array, n);
+    int* A = getnewarray(n);
+    createArrayA(array, A, n);
+    printf("Массив A:\n");
+    printarray(A, n);
     free(array);
+    free(A);
     return 0;
 }
 
@@ -220,4 +250,58 @@ int abovezero(void)
         exit(EXIT_FAILURE);
     }
     return value;
+}
+
+int containsDigitOne(int num) 
+{
+    num = abs(num);
+    while (num > 0) 
+    {
+        if (num % 10 == 1) 
+        {
+            return 1;
+        }
+        num /= 10;
+    }
+    return 0;
+}
+
+int* insertBeforeDigitOne(int* array, size_t* n, int K) 
+{
+    for (size_t i = 0; i < *n; i++) 
+    {
+        if (containsDigitOne(array[i])) 
+        {
+            *n += 1;
+            array = realloc(array, (*n) * sizeof(int));
+            if (array == NULL) 
+            {
+                perror("Ошибка выделения памяти: ");
+                free(array);
+                exit(EXIT_FAILURE);
+            }
+            for (size_t j = *n - 1; j > i + 1; j--) 
+            {
+                array[j] = array[j - 1];
+            }
+            array[i + 1] = K;
+            i++; 
+        }
+    }
+    return array;
+}
+
+void createArrayA(const int* D, int* A, size_t n) 
+{
+    for (size_t i = 0; i < n; i++) 
+    {
+        if (i % 2 == 0) 
+        {
+            A[i] = D[i] * D[i]; 
+        }
+        else 
+        {
+            A[i] = D[i] / (i + 1); 
+        }
+    }
 }
