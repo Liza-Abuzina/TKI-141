@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <time.h>
-#include <stdbool.h>
 
 /**
 * @brief Вычисляет сумму нечетных элементов массива
