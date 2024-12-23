@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <time.h>
+#include <stdbool.h>
 
 /**
 * @brief Заменяет второй элемент массива максимальным отрицательным элементом
@@ -76,7 +77,7 @@ int abovezero(void);
 * @param num - Целое число, которое будет проверяться
 * @return 1, если число содержит цифру "1", и 0 в противном случае
 */
-int containsdigitone(int num);
+bool containsdigitone(int num);
 
 /**
 * @brief Вставляет значение K перед каждым элементом массива, который содержит цифру 1. При этом размер массива увеличивается
@@ -133,9 +134,8 @@ int main(void)
     }
     printf("Исходный массив: \n");
     printarray(array, n);
-    replacesecondelementwithmaxnegative(array, n);
     printf("Массив после замены второго элемента:\n");
-    printarray(array, n);
+    replacesecondelementwithmaxnegative(array, n);
     printf("Введите число K: ");
     int K = inputvalue();
     array = insertbeforedigitone(array, &n, K);
@@ -152,18 +152,41 @@ int main(void)
 
 void replacesecondelementwithmaxnegative(int* array, const size_t n)
 {
-    int maxnegative = -1000;
-    for (size_t i = 0; i < n; i++)
+    int firstnegativeindex = -1;
+    int maxnegative = 0;
+    for (int i = 0; i < n; i++) 
     {
-        if (array[i] < 0 && array[i] > maxnegative)
+        if (array[i] < 0) 
         {
-            maxnegative = array[i];
+            firstnegativeindex = i;
+            maxnegative = array[i]; 
+            break; 
         }
     }
-    if (maxnegative < 0 && n > 1)
+    if (firstnegativeindex != -1) 
     {
-        array[1] = maxnegative;
+        for (int i = firstnegativeindex + 1; i < n; i++) 
+        {
+            if (array[i] < 0 && array[i] > maxnegative) 
+{
+                maxnegative = array[i];
+            }
+        }
+        if (n > 1) 
+        { 
+            array[1] = maxnegative;
+        }
     }
+    else 
+    {
+        printf("Отрицательные элементы не найдены.\n");
+    }
+    for (int i = 0; i < n; i++) 
+    {
+        printf("%d ", array[i]);
+    }
+    printf("\n");
+    return 0;
 }
 
 void printarray(const int* array, const size_t n)
@@ -252,18 +275,18 @@ int abovezero(void)
     return value;
 }
 
-int containsdigitone(int num) 
+bool containsdigitone(int num) 
 {
     num = abs(num);
     while (num > 0) 
     {
         if (num % 10 == 1) 
         {
-            return 1;
+            return true;
         }
         num /= 10;
     }
-    return 0;
+    return false;
 }
 
 int* insertbeforedigitone(int* array, size_t* n, int K) 
