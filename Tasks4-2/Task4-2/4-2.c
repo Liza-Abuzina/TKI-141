@@ -300,7 +300,7 @@ void createArrayA(const int* D, int* A, size_t n)
         }
         else 
         {
-            A[i] = D[i] / (i); 
+            A[i] = D[i] / (i + 1); 
         }
     }
 }
