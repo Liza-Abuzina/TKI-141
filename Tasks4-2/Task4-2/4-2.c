@@ -172,8 +172,8 @@ void replacesecondelementwithmaxnegative(int* array, const size_t n)
                 maxnegative = array[i];
             }
         }
-        if (n > 1) 
-        { 
+        if (n > 1)
+        {
             array[1] = maxnegative;
         }
     }
