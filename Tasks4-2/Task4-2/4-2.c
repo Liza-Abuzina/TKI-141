@@ -254,7 +254,6 @@ int abovezero(void)
 
 int containsdigitone(int num) 
 {
-    num = abs(num);
     while (num > 0) 
     {
         if (num % 10 == 1) 
