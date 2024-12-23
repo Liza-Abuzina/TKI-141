@@ -274,18 +274,17 @@ int* insertBeforeDigitOne(int* array, size_t* n, int K)
         {
             *n += 1;
             array = realloc(array, (*n) * sizeof(int));
-            if (array == NULL) 
+            if (array == NULL)
             {
                 perror("Ошибка выделения памяти: ");
-                free(array);
                 exit(EXIT_FAILURE);
             }
-            for (size_t j = *n - 1; j > i + 1; j--) 
+            for (size_t j = *n - 1; j > i ; j--) 
             {
                 array[j] = array[j - 1];
             }
-            array[i + 1] = K;
-            i++; 
+            array[i] = K;
+            i++;
         }
     }
     return array;
@@ -301,7 +300,7 @@ void createArrayA(const int* D, int* A, size_t n)
         }
         else 
         {
-            A[i] = D[i] / (i + 1); 
+            A[i] = D[i] / (i); 
         }
     }
 }
