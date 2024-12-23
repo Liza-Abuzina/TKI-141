@@ -76,7 +76,7 @@ int abovezero(void);
 * @param num - Целое число, которое будет проверяться
 * @return 1, если число содержит цифру "1", и 0 в противном случае
 */
-int containsDigitOne(int num);
+int containsdigitone(int num);
 
 /**
 * @brief Вставляет значение K перед каждым элементом массива, который содержит цифру 1. При этом размер массива увеличивается
@@ -85,7 +85,7 @@ int containsDigitOne(int num);
 * @param K - Значение, которое будет вставлено перед элементами, содержащими цифру 1
 * @return Указатель на новый массив с вставленными значениями
 */
-int* insertBeforeDigitOne(int* array, size_t* n, int K);
+int* insertbeforedigitone(int* array, size_t* n, int K);
 
 /**
 * @brief Заполняет массив A значениями, основанными на значениях из массива D
@@ -93,7 +93,7 @@ int* insertBeforeDigitOne(int* array, size_t* n, int K);
 * @param A - Указатель на массив целых чисел, который будет заполнен новыми значениями
 * @param n - Размер массива D
 */
-void createArrayA(const int* D, int* A, size_t n);
+void createarraya(const int* D, int* A, size_t n);
 
 /**
 * @brief Выбор исполняемой функции
@@ -138,11 +138,11 @@ int main(void)
     printarray(array, n);
     printf("Введите число K: ");
     int K = inputvalue();
-    array = insertBeforeDigitOne(array, &n, K);
+    array = insertbeforedigitone(array, &n, K);
     printf("Массив после вставки K перед элементами, содержащими цифру 1:\n");
     printarray(array, n);
     int* A = getnewarray(n);
-    createArrayA(array, A, n);
+    createarraya(array, A, n);
     printf("Массив A:\n");
     printarray(A, n);
     free(array);
@@ -252,7 +252,7 @@ int abovezero(void)
     return value;
 }
 
-int containsDigitOne(int num) 
+int containsdigitone(int num) 
 {
     num = abs(num);
     while (num > 0) 
@@ -266,11 +266,11 @@ int containsDigitOne(int num)
     return 0;
 }
 
-int* insertBeforeDigitOne(int* array, size_t* n, int K) 
+int* insertbeforedigitone(int* array, size_t* n, int K) 
 {
     for (size_t i = 0; i < *n; i++) 
     {
-        if (containsDigitOne(array[i])) 
+        if (containsdigitone(array[i])) 
         {
             *n += 1;
             array = realloc(array, (*n) * sizeof(int));
@@ -290,7 +290,7 @@ int* insertBeforeDigitOne(int* array, size_t* n, int K)
     return array;
 }
 
-void createArrayA(const int* D, int* A, size_t n) 
+void createarraya(const int* D, int* A, size_t n) 
 {
     for (size_t i = 0; i < n; i++) 
     {
