@@ -74,7 +74,7 @@ int main(void)
     printf("Введите шаг на интервале: ");
     double step = checkstep();
     double x = start;
-    printf("%-10s %-20s %-20sn", "x", "Значение функции", "Значение функционального ряда\n");
+    printf("%-10s %-20s %-20s", "x", "Значение функции", "Значение функционального ряда\n");
     while (x <= end + DBL_EPSILON)
     {
         printf("%-10.2lf | %-20.10lf | %-20.10lf\n", x, getfunctionx(x), getsumm(start, end, eps));
