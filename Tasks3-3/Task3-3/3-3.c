@@ -79,6 +79,7 @@ int main(void)
     {
         printf("%-10.2lf | %-20.10lf | %-20.10lf\n", x, getfunctionx(x), getsumm(start, end, eps));
         x += step;
+        start += step;
     }
     return 0;
 }
