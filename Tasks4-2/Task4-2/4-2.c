@@ -135,7 +135,7 @@ int main(void)
     printf("Исходный массив: \n");
     printarray(array, n);
     printf("Массив после замены второго элемента:\n");
-    replacesecondelementwithmaxnegative(array, n);
+    printarray(array, n);
     printf("Введите число K: ");
     int K = inputvalue();
     array = insertbeforedigitone(array, &n, K);
@@ -152,23 +152,21 @@ int main(void)
 
 void replacesecondelementwithmaxnegative(int* array, const size_t n)
 {
-    int firstnegativeindex = -1;
-    int maxnegative = 0;
-    for (int i = 0; i < n; i++) 
+    checkarray(array);
+    size_t i = 0;
+    size_t maxnegative = 0;
+    while ((i < n) && (array[i] > 0))
     {
-        if (array[i] < 0) 
-        {
-            firstnegativeindex = i;
-            maxnegative = array[i]; 
-            break; 
-        }
+        ++i;
     }
-    if (firstnegativeindex != -1) 
+    return i;
+    size_t maxnegative = array[i];
+    if (i != n)
     {
-        for (int i = firstnegativeindex + 1; i < n; i++) 
+        for (size_t i; i < n; i++)
         {
-            if (array[i] < 0 && array[i] > maxnegative) 
-{
+            if (array[i] < 0 && array[i] > maxnegative)
+            {
                 maxnegative = array[i];
             }
         }
@@ -177,16 +175,11 @@ void replacesecondelementwithmaxnegative(int* array, const size_t n)
             array[1] = maxnegative;
         }
     }
-    else 
+    else
     {
-        printf("Отрицательные элементы не найдены.\n");
+        printf("В массиве нет отрицательных чисел");
     }
-    for (int i = 0; i < n; i++) 
-    {
-        printf("%d ", array[i]);
-    }
-    printf("\n");
-    return 0;
+    return array;
 }
 
 void printarray(const int* array, const size_t n)
