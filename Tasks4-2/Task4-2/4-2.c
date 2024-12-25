@@ -66,6 +66,7 @@ void checkarray(const int* array);
 * @return Создание нового массива
 */
 int* getnewarray(const int n);
+
 /**
 * @brief Считывает целочисленное значение.
 * @remarks При неправильном вводе программа завершает выполнение.
