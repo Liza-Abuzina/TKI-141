@@ -14,7 +14,10 @@
 void replacesecondelementwithmaxnegative(int* array, const size_t n);
 
 /**
-* 
+ * @brief Находит индекс первого отрицательного элемента в массиве
+ * @param array Указатель на массив целых чисел, который необходимо проверить
+ * @param n Размер массива
+ * @return Индекс первого отрицательного элемента в массиве. Если отрицательных элементов нет, возвращается значение n
 */
 size_t searchfornegative(int* array, const size_t n);
 
@@ -140,6 +143,7 @@ int main(void)
     printf("Исходный массив: \n");
     printarray(array, n);
     printf("Массив после замены второго элемента:\n");
+    replacesecondelementwithmaxnegative(array, n);
     printarray(array, n);
     printf("Введите число K: ");
     int K = inputvalue();
@@ -169,23 +173,27 @@ void replacesecondelementwithmaxnegative(int* array, const size_t n)
 {
     checkarray(array);
     size_t i = searchfornegative(array, n);
-    size_t maxnegative = array[i];
-    if (i != n)
+    size_t maxnegative = array[i];    
+    if (i == n)
     {
-        for (i; i < n; i++)
+        printf("В массиве нет отрицательных чисел\n");
+    }
+    else 
+    {
+        for (i; i < n; i++) 
         {
             if (array[i] < 0 && array[i] > maxnegative)
             {
                 maxnegative = array[i];
             }
         }
-        array[1] = maxnegative;
-    }
-    else
-    {
-        printf("В массиве нет отрицательных чисел");
+        if (n > 0) 
+        {
+            array[1] = maxnegative;
+        }
     }
     return array;
+    printarray(array, n);
 }
 
 void printarray(const int* array, const size_t n)
