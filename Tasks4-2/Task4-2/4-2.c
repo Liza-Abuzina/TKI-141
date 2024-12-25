@@ -14,6 +14,11 @@
 void replacesecondelementwithmaxnegative(int* array, const size_t n);
 
 /**
+* 
+*/
+size_t searchfornegative(int* array, const size_t n);
+
+/**
 * @brief Массив
 * @param array - массив
 * @param n - размер массива
@@ -150,30 +155,31 @@ int main(void)
     return 0;
 }
 
-void replacesecondelementwithmaxnegative(int* array, const size_t n)
+size_t searchfornegative(int* array, const size_t n)
 {
-    checkarray(array);
     size_t i = 0;
-    size_t maxnegative = 0;
     while ((i < n) && (array[i] > 0))
     {
         ++i;
     }
     return i;
+}
+
+void replacesecondelementwithmaxnegative(int* array, const size_t n)
+{
+    checkarray(array);
+    size_t i = searchfornegative(array, n);
     size_t maxnegative = array[i];
     if (i != n)
     {
-        for (size_t i; i < n; i++)
+        for (i; i < n; i++)
         {
             if (array[i] < 0 && array[i] > maxnegative)
             {
                 maxnegative = array[i];
             }
         }
-        if (n > 1)
-        {
-            array[1] = maxnegative;
-        }
+        array[1] = maxnegative;
     }
     else
     {
