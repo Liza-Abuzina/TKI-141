@@ -188,13 +188,12 @@ void replacesecondelementwithmaxnegative(int* array, const size_t n)
                 maxnegative = array[i];
             }
         }
-        if (n > 0) 
+        if (n > 1) 
         {
             array[1] = maxnegative;
         }
     }
     return array;
-    printarray(array, n);
 }
 
 void printarray(const int* array, const size_t n)
